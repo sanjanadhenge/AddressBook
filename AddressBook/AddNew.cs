@@ -100,14 +100,14 @@ namespace AddressBook
         
         public void Delete()
         {
-            //Console.WriteLine("Enter First Name To delete Contact");
-           // string name = Console.ReadLine();
+            Console.WriteLine("Enter First Name To delete Contact");
+             string name = Console.ReadLine();
             foreach (var data in Data)
             {
-                //if (data.FirstName.Equals(name))
-               // {
-                    Console.WriteLine(data);
-               // }
+                if (data.FirstName.Equals(name))
+                {
+                    Data.Remove(data);
+                }
 
             }     
         }
