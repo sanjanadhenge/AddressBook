@@ -13,9 +13,17 @@ namespace AddressBook
         {
             Console.WriteLine("Welcome To Address Book ");
             AddNew addNew = new AddNew();
-            addNew.Add();
+            Console.WriteLine("Enter the number of contacts to add");
+            int N = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < N; i++)
+            {
+                addNew.Add();
+                addNew.Display();
+            }
+            addNew.Edit();
+            addNew.Delete();
             addNew.Display();
-            addNew.Edit();  
+
 
         }
     }
