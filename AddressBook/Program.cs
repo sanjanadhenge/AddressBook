@@ -15,6 +15,7 @@ namespace AddressBook
             AddNew addNew = new AddNew();
             addNew.Add();
             addNew.Display();
+            addNew.Edit();  
 
         }
     }
