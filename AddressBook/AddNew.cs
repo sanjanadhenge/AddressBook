@@ -8,10 +8,11 @@ namespace AddressBook
 {
     public class AddNew
     {
-        Contact contact = new Contact();
+         Contact contact = new Contact();
         List<Contact> Data = new List<Contact>();
         public void Add()
         {
+            Contact contact = new Contact();
             Console.WriteLine("Enter First Name");
             contact.FirstName = Console.ReadLine();
             Console.WriteLine("Enter Last Name");
@@ -35,7 +36,7 @@ namespace AddressBook
         {
             foreach (var data in Data)
             {
-                Console.WriteLine("First Name :" + contact.FirstName + "\n" + "Last Name :" + contact.LastName + "\n" + "Address :" + contact.Address + "\n" + "City :" + contact.City + "\n" + "State :" + contact.State + "\n" + "Zip Code :" + contact.zip + "\n" + "Phone Number :" + contact.PhoneNumber + "\n" + "Mail Id :" + contact.Email);
+                Console.WriteLine("First Name :" + data.FirstName + "\n" + "Last Name :" + data.LastName + "\n" + "Address :" + data.Address + "\n" + "City :" + data.City + "\n" + "State :" + data.State + "\n" + "Zip Code :" + data.zip + "\n" + "Phone Number :" + data.PhoneNumber + "\n" + "Mail Id :" + data.Email);
             }
         }
         public void Edit()
@@ -52,42 +53,42 @@ namespace AddressBook
                     {
                         case 1:
                             Console.WriteLine("Enter First Name");
-                            contact.FirstName = Console.ReadLine();
+                            data.FirstName = Console.ReadLine();
                             Display();
                             break;
                         case 2:
                             Console.WriteLine("Enter last Name");
-                            contact.LastName = Console.ReadLine();
+                            data.LastName = Console.ReadLine();
                             Display();
                             break;
                         case 3:
                             Console.WriteLine("Enter Address");
-                            contact.Address = Console.ReadLine();
+                            data.Address = Console.ReadLine();
                             Display();
                             break;
                         case 4:
                             Console.WriteLine("Enter City");
-                            contact.City = Console.ReadLine();
+                            data.City = Console.ReadLine();
                             Display();
                             break;
                         case 5:
                             Console.WriteLine("Enter State");
-                            contact.State = Console.ReadLine();
+                            data.State = Console.ReadLine();
                             Display();
                             break;
                         case 6:
                             Console.WriteLine("Enter Zip Code");
-                            contact.zip = Console.ReadLine();
+                            data.zip = Console.ReadLine();
                             Display();
                             break;
                         case 7:
                             Console.WriteLine("Enter Phone Number");
-                            contact.PhoneNumber = Console.ReadLine();
+                            data.PhoneNumber = Console.ReadLine();
                             Display();
                             break;
                         case 8:
                             Console.WriteLine("Enter Mail Id");
-                            contact.Email = Console.ReadLine();
+                            data.Email = Console.ReadLine();
                             Display();
                             break;
 
@@ -100,16 +101,18 @@ namespace AddressBook
         
         public void Delete()
         {
+            Contact contact = new Contact();
             Console.WriteLine("Enter First Name To delete Contact");
-             string name = Console.ReadLine();
+            string name = Console.ReadLine();
             foreach (var data in Data)
             {
                 if (data.FirstName.Equals(name))
                 {
-                    Data.Remove(data);
+                    contact = data;
                 }
 
-            }     
+            }  
+            Data.Remove(contact);
         }
     }
 }
