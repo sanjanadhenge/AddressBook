@@ -10,27 +10,58 @@ namespace AddressBook
     {
         Contact contact = new Contact();
         List<Contact> Data = new List<Contact>();
+        Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>(); 
         public void Add()
         {
-            Console.WriteLine("Enter First Name");
-            contact.FirstName = Console.ReadLine();
-            Console.WriteLine("Enter Last Name");
-            contact.LastName = Console.ReadLine();
-            Console.WriteLine("Enter Address");
-            contact.Address = Console.ReadLine();
-            Console.WriteLine("Enter City");
-            contact.City = Console.ReadLine();
-            Console.WriteLine("Enter State");
-            contact.State = Console.ReadLine();
-            Console.WriteLine("Enter zip");
-            contact.zip = Console.ReadLine();
-            Console.WriteLine("Enter PhoneNumber");
-            contact.PhoneNumber = Console.ReadLine();
-            Console.WriteLine("Enter email");
-            contact.Email = Console.ReadLine();
-            Data.Add(contact);
+                Console.WriteLine("Enter First Name");
+                contact.FirstName = Console.ReadLine();
+              int f =  CheckUnique(contact.FirstName);
+            if(f == 0)
+            {
+                Console.WriteLine("Enter Last Name");
+                contact.LastName = Console.ReadLine();
+                Console.WriteLine("Enter Address");
+                contact.Address = Console.ReadLine();
+                Console.WriteLine("Enter City");
+                contact.City = Console.ReadLine();
+                Console.WriteLine("Enter State");
+                contact.State = Console.ReadLine();
+                Console.WriteLine("Enter zip");
+                contact.zip = Console.ReadLine();
+                Console.WriteLine("Enter PhoneNumber");
+                contact.PhoneNumber = Console.ReadLine();
+                Console.WriteLine("Enter email");
+                contact.Email = Console.ReadLine();
+                Data.Add(contact);
+                dict.Add(contact.FirstName, Data);
+            }
+          
         }
-   
+        public int CheckUnique(string name)
+        {
+            int flag = 0;
+            if (dict.Count != 0)
+            {
+                foreach (var data in dict)
+                {
+                    foreach (var item in data.Value)
+                    {
+
+                        if (data.Key.Equals(name))
+                        {
+                            Console.WriteLine("The Name you have enterd is already present");
+                            flag = 1;
+                            break;
+
+                        }
+
+                    }
+                }
+                
+            }
+            return flag;
+        }
+
         public void Display()
         {
             foreach (var data in Data)
@@ -113,6 +144,7 @@ namespace AddressBook
             }
             Data.Remove(contact);
         }
+
     }
 }
     
