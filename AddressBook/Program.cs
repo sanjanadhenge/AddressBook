@@ -16,7 +16,7 @@ namespace AddressBook
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Select Option \n1. Add Contact\n 2. Edit Contact\n 3. Delete Contact\n 4.Exit\n");
+                Console.WriteLine("Select Option \n 1.Add Contact \n 2.Edit Contact \n 3.Delete Contact \n 4.Search Using City \n 5.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -37,6 +37,13 @@ namespace AddressBook
                         addNew.Display();
                         break;
                     case 4:
+                        Console.WriteLine("Enter Name");
+                        string name = Console.ReadLine();
+                        Console.WriteLine("Enter Name of city");
+                        string city = Console.ReadLine();
+                        addNew.SearchByCity(name, city);
+                        break;
+                    case 5:
                         flag = false;
                         break;
                 }
