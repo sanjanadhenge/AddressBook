@@ -15,8 +15,9 @@ namespace AddressBook
         {
                 Console.WriteLine("Enter First Name");
                 contact.FirstName = Console.ReadLine();
-              int f =  CheckUnique(contact.FirstName);
-            if(f == 0)
+                int f2 =checkDulpicate(contact.FirstName);
+            // int f =  CheckUnique(contact.FirstName);
+            if(f2 == 0 )
             {
                 Console.WriteLine("Enter Last Name");
                 contact.LastName = Console.ReadLine();
@@ -34,9 +35,13 @@ namespace AddressBook
                 contact.Email = Console.ReadLine();
                 Data.Add(contact);
                 dict.Add(contact.FirstName, Data);
+
             }
-          
+
+
+
         }
+        
         public int CheckUnique(string name)
         {
             int flag = 0;
@@ -46,7 +51,7 @@ namespace AddressBook
                 {
                     foreach (var item in data.Value)
                     {
-
+                        
                         if (data.Key.Equals(name))
                         {
                             Console.WriteLine("The Name you have enterd is already present");
@@ -61,6 +66,30 @@ namespace AddressBook
             }
             return flag;
         }
+        public int checkDulpicate(string name)
+        {
+            int flag2 = 0;
+            if(dict.Count != 0)
+            {
+                foreach (var data in dict)
+                {
+                    foreach (var item in data.Value)
+                    {
+                        Console.WriteLine(data.Key.Any(x => x.Equals(name)));
+                        if (data.Key.Any(x=>x.Equals(name)))
+                        {
+                            Console.WriteLine("Duplicate is present");
+                            flag2 = 1;
+                            break;
+
+                        }
+
+                    }
+                }
+            }
+            return flag2;
+        }
+      
 
         public void Display()
         {
