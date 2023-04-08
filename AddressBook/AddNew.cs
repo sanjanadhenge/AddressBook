@@ -8,14 +8,21 @@ namespace AddressBook
 {
     public class AddNew
     {
-        Contact contact = new Contact();
-        List<Contact> Data = new List<Contact>();
-        Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+       Contact contact = new Contact();
+       public List<Contact> Data = new List<Contact>();
+       public Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+       public Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
+       public Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
+        string[] names = new string[5];
+        int i = 0;
+        
         public void Add()
         {
+           
             Contact contact = new Contact();
             Console.WriteLine("Enter First Name");
             contact.FirstName = Console.ReadLine();
+            names[i] = contact.FirstName;
             Console.WriteLine("Enter Last Name");
             contact.LastName = Console.ReadLine();
             Console.WriteLine("Enter Address");
@@ -31,7 +38,30 @@ namespace AddressBook
             Console.WriteLine("Enter email");
             contact.Email = Console.ReadLine();
             Data.Add(contact);
-            dict.Add(contact.FirstName, Data);
+            var result1 = Data.Where(x => x.FirstName.Equals(names[i])).ToList(); 
+            dict.Add(names[i], result1);
+            var result2 = Data.Where(x=>x.City.Equals(contact.City)).ToList();
+            city.Add(contact.City, result2);
+            var result3 = Data.Where(x=>x.State.Equals(contact.State)).ToList();
+            state.Add(contact.State, result3);
+
+          
+        }
+        public void DisplayDict()
+        {
+            Console.WriteLine("Whole Dictionary----------------->");
+            DisplayData(dict);
+            
+        }
+        public void DisplayCity()
+        {
+            Console.WriteLine("City Data------------------------>");
+            DisplayData(city);
+        }
+        public void DisplayState()
+        {
+            Console.WriteLine("State Data----------------------->");
+            DisplayData(state);
         }
 
         public int CheckUnique(string name)
@@ -96,7 +126,20 @@ namespace AddressBook
             }
             return flag2;
         }
-      
+       
+      public void DisplayData(Dictionary<string, List<Contact>> dict)
+        {
+            foreach (var data in dict)
+            {
+                Console.WriteLine("Key------------>" + data.Key);
+                foreach (var item in data.Value)
+                {
+                    Console.WriteLine("First Name :" + item.FirstName + "\n" + "Last Name :" + item.LastName + "\n" + "Address :" + item.Address + "\n" + "City :" + item.City + "\n" + "State :" + item.State + "\n" + "Zip Code :" + item.zip + "\n" + "Phone Number :" + item.PhoneNumber + "\n" + "Mail Id :" + item.Email);
+                }
+
+
+            }
+        }
 
         public void Display()
         {
@@ -107,6 +150,7 @@ namespace AddressBook
         }
         public void Edit()
         {
+            
             Console.WriteLine("Edit Using First Name");
             string name = Console.ReadLine();
             foreach (var data in Data)

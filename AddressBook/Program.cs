@@ -16,7 +16,7 @@ namespace AddressBook
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Select Option \n 1.Add Contact \n 2.Edit Contact \n 3.Delete Contact \n 4.Search Using City \n 5.Exit");
+                Console.WriteLine("Select Option \n 1.Add Contact \n 2.Edit Contact \n 3.Delete Contact \n 4.Search Using City \n 5.Display City List Or State List \n 6.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -27,7 +27,7 @@ namespace AddressBook
                         {
                             addNew.Add();
                         }
-                       addNew.Display();
+                      addNew.DisplayDict();
                         break;
                     case 2:
                         addNew.Edit();
@@ -44,6 +44,29 @@ namespace AddressBook
                         addNew.SearchByCity(name, city);
                         break;
                     case 5:
+                        bool f = true;
+                        while(f)
+                        {
+                            Console.WriteLine("Select an Option \n 1.Data using City \n 2.Data using State \n 3.Exit");
+                            int opt = Convert.ToInt32(Console.ReadLine());
+                            switch(opt)
+                            {
+                                case 1:
+                                    addNew.DisplayCity();
+                                    break;
+                                case 2:
+                                    addNew.DisplayState();
+                                    break;
+                                case 3:
+                                    f= false;
+                                    break;
+                            }
+
+                        }
+                       
+
+                        break;
+                    case 6:
                         flag = false;
                         break;
                 }
