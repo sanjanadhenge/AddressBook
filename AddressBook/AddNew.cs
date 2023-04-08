@@ -63,6 +63,18 @@ namespace AddressBook
             Console.WriteLine("State Data----------------------->");
             DisplayData(state);
         }
+       
+        public void ByCity(string cityname)
+            {
+                var result = city.Keys.Where(x => x.Equals(cityname)).ToList();
+                Console.WriteLine("No of Contact ------------>"+result.Count);
+            }
+         public void ByState(string statename)
+            {
+                var result = state.Keys.Where(x => x.Equals(statename)).ToList();
+                Console.WriteLine("No of Contact ------------>" + result.Count);
+            }
+        
 
         public int CheckUnique(string name)
         {
