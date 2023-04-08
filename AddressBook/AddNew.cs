@@ -13,16 +13,13 @@ namespace AddressBook
        public Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
        public Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
        public Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
-        string[] names = new string[5];
-        int i = 0;
-        
+       
         public void Add()
         {
            
             Contact contact = new Contact();
             Console.WriteLine("Enter First Name");
             contact.FirstName = Console.ReadLine();
-            names[i] = contact.FirstName;
             Console.WriteLine("Enter Last Name");
             contact.LastName = Console.ReadLine();
             Console.WriteLine("Enter Address");
@@ -38,8 +35,8 @@ namespace AddressBook
             Console.WriteLine("Enter email");
             contact.Email = Console.ReadLine();
             Data.Add(contact);
-            var result1 = Data.Where(x => x.FirstName.Equals(names[i])).ToList(); 
-            dict.Add(names[i], result1);
+            var result1 = Data.Where(x => x.FirstName.Equals(contact.FirstName)).ToList(); 
+            dict.Add(contact.FirstName, result1);
             var result2 = Data.Where(x=>x.City.Equals(contact.City)).ToList();
             city.Add(contact.City, result2);
             var result3 = Data.Where(x=>x.State.Equals(contact.State)).ToList();
