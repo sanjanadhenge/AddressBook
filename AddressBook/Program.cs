@@ -16,7 +16,7 @@ namespace AddressBook
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Select Option \n 1.Add Contact \n 2.Edit Contact \n 3.Delete Contact \n 4.Search Using City \n 5.Display City List Or State List \n 6.Get No of Contact by City or State");
+                Console.WriteLine("Select Option \n 1.Add Contact \n 2.Edit Contact \n 3.Delete Contact \n 4.Search Using City \n 5.Display City List Or State List \n 6.Get No of Contact by City or State \n 7.Sort Dictionary using persons name \n 8.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -92,6 +92,9 @@ namespace AddressBook
                         }
                         break;
                     case 7:
+                        addNew.SortDict();
+                        break;
+                    case 8:
                         flag = false;
                         break;
                 }
