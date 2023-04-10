@@ -14,8 +14,11 @@ namespace AddressBook
        public Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
        public Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
        
+<<<<<<< HEAD
       
         
+=======
+>>>>>>> UC11-SortPersonByName
         public void Add()
         {
            
@@ -46,6 +49,7 @@ namespace AddressBook
 
           
         }
+
         public void DisplayDict()
         {
             Console.WriteLine("Whole Dictionary----------------->");
@@ -73,7 +77,11 @@ namespace AddressBook
                 var result = state.Keys.Where(x => x.Equals(statename)).ToList();
                 Console.WriteLine("No of Contact ------------>" + result.Count);
             }
-        
+        public void SortDict()
+        {
+            dict = dict.OrderBy(key => key.Key).ToDictionary(key=>key.Key, key => key.Value);
+            DisplayData(dict);
+        }
 
         public int CheckUnique(string name)
         {
