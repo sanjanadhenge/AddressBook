@@ -13,12 +13,10 @@ namespace AddressBook
        public Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
        public Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
        public Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
-       
-<<<<<<< HEAD
-      
-        
-=======
->>>>>>> UC11-SortPersonByName
+        public Dictionary<string, List<Contact>> zipCode = new Dictionary<string, List<Contact>>();
+
+
+
         public void Add()
         {
            
@@ -46,8 +44,10 @@ namespace AddressBook
             city.Add(contact.City, result2);
             var result3 = Data.Where(x=>x.State.Equals(contact.State)).ToList();
             state.Add(contact.State, result3);
+            var result4 = Data.Where(x => x.zip.Equals(contact.zip)).ToList();
+            zipCode.Add(contact.zip, result4);
 
-          
+
         }
 
         public void DisplayDict()
@@ -82,7 +82,21 @@ namespace AddressBook
             dict = dict.OrderBy(key => key.Key).ToDictionary(key=>key.Key, key => key.Value);
             DisplayData(dict);
         }
-
+        public void SortCity()
+        {
+            city = city.OrderBy(key => key.Key).ToDictionary(key => key.Key, key => key.Value);
+            DisplayData(city);
+        }
+        public void SortState()
+        {
+            state = state.OrderBy(key => key.Key).ToDictionary(key => key.Key, key => key.Value);
+            DisplayData(state);
+        }
+        public void SortZip()
+        {
+            zipCode = zipCode.OrderBy(key => key.Key).ToDictionary(key => key.Key, key => key.Value);
+            DisplayData(zipCode);
+        }
         public int CheckUnique(string name)
         {
             int flag = 0;

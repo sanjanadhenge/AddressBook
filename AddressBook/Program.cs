@@ -16,7 +16,7 @@ namespace AddressBook
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Select Option \n 1.Add Contact \n 2.Edit Contact \n 3.Delete Contact \n 4.Search Using City \n 5.Display City List Or State List \n 6.Get No of Contact by City or State \n 7.Sort Dictionary using persons name \n 8.Exit");
+                Console.WriteLine("Select Option \n 1.Add Contact \n 2.Edit Contact \n 3.Delete Contact \n 4.Search Using City \n 5.Display City List Or State List \n 6.Get No of Contact by City or State \n 7.Sort Dictionary using persons name \n 8.Sort Dictionary by city ,state or Zipcode \n 9.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -95,6 +95,30 @@ namespace AddressBook
                         addNew.SortDict();
                         break;
                     case 8:
+                        bool f3 = true;
+                        while (f3)
+                        {
+                            Console.WriteLine("Select an Option \n 1.Sort By City \n 2..Sort by State \n 3.Sort by ZipCode \n 4.Exit");
+                            int opt = Convert.ToInt32(Console.ReadLine());
+                            switch (opt)
+                            {
+                                case 1:
+                                    addNew.SortCity();
+                                    break;
+                                case 2:
+                                    addNew.SortState();
+                                    break;
+                                case 3:
+                                    addNew.SortZip();
+                                    break;
+                                case 4:
+                                    f3 = false;
+                                    break;
+                            }
+
+                        }
+                        break;
+                    case 9:
                         flag = false;
                         break;
                 }
