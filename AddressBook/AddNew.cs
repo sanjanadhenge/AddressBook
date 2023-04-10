@@ -13,9 +13,7 @@ namespace AddressBook
        public Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
        public Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
        public Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
-        public Dictionary<string, List<Contact>> zipCode = new Dictionary<string, List<Contact>>();
-
-
+       public Dictionary<string, List<Contact>> zipCode = new Dictionary<string, List<Contact>>();
 
         public void Add()
         {
@@ -46,7 +44,7 @@ namespace AddressBook
             state.Add(contact.State, result3);
             var result4 = Data.Where(x => x.zip.Equals(contact.zip)).ToList();
             zipCode.Add(contact.zip, result4);
-
+            WriteToFile(@"C:\Users\SOURABH\Desktop\Day 3\AddressBook\AddressBook\AddressBookFile.txt");
 
         }
 
@@ -96,6 +94,32 @@ namespace AddressBook
         {
             zipCode = zipCode.OrderBy(key => key.Key).ToDictionary(key => key.Key, key => key.Value);
             DisplayData(zipCode);
+        }
+        public void WriteToFile(string filePath)
+        {
+            using(StreamWriter sr = new StreamWriter(filePath))
+            {
+                foreach (var data in dict)
+                {
+                    sr.WriteLine("Key------------>"+data.Key);
+                    foreach (var item in data.Value)
+                    {
+                        sr.WriteLine("First Name :" + item.FirstName + "\n" + "Last Name :" + item.LastName + "\n" + "Address :" + item.Address + "\n" + "City :" + item.City + "\n" + "State :" + item.State + "\n" + "Zip Code :" + item.zip + "\n" + "Phone Number :" + item.PhoneNumber + "\n" + "Mail Id :" + item.Email);
+                    }
+
+
+                }
+            }
+        }
+        public void ReadFile(string filePath)
+        {
+            using(StreamReader sr = new StreamReader(filePath))
+            {
+                while(sr.ReadLine() != null)
+                {
+                    Console.WriteLine(sr.ReadLine());
+                }
+            }
         }
         public int CheckUnique(string name)
         {
