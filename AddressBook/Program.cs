@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-   public class program
+    public class program
     {
         static void Main(string[] args)
         {
@@ -16,40 +16,67 @@ namespace AddressBook
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Select Option \n 1.Add Contact \n 2.Edit Contact \n 3.Delete Contact \n 4.Search Using City \n 5.Display City List Or State List \n 6.Get No of Contact by City or State");
+                Console.WriteLine("Select Option \n1. Add Contact\n 2.Edit Contact\n 3.Delete Contact\n 4.Serach using city \n 5.Display City List Or State List \n 6.Get No of Contact by City or State \n 7.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
                     case 1:
-                        Console.WriteLine("Enter the number of contacts to add");
+                        Console.WriteLine("Enter the number of Address book you want to add");
                         int N = Convert.ToInt32(Console.ReadLine());
                         for (int i = 0; i < N; i++)
                         {
-                            addNew.Add();
+                            addNew.AddToDict();
                         }
-                      addNew.DisplayDict();
+                        addNew.DisplayData();
                         break;
                     case 2:
-                        addNew.Edit();
-                        break;
-                    case 3:
-                        addNew.Delete();
-                        addNew.Display();
-                        break;
-                    case 4:
+                        Console.WriteLine("Enter UniqueName");
+                        string unique = Console.ReadLine();
                         Console.WriteLine("Enter Name");
                         string name = Console.ReadLine();
-                        Console.WriteLine("Enter Name of city");
-                        string city = Console.ReadLine();
-                        addNew.SearchByCity(name, city);
+                        addNew.Edit(name, unique);
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter UniqueName");
+                        string unique1 = Console.ReadLine();
+                        Console.WriteLine("Enter Name");
+                        string name1 = Console.ReadLine();
+                        addNew.Delete(name1, unique1);
+                        addNew.DisplayData();
+                        break;
+                    case 4:
+                        bool f = true;
+                        while (f)
+                        {
+                            Console.WriteLine("Select an Option \n 1.Search using City \n 2.Search using State \n 3.Exit");
+                            int opt = Convert.ToInt32(Console.ReadLine());
+                            switch (opt)
+                            {
+                                case 1:
+                                    Console.WriteLine("Enter Name of city");
+                                    string city = Console.ReadLine();
+                                    addNew.SearchByCity(city);
+                                    break;
+                                case 2:
+                                    Console.WriteLine("Enter Name of state");
+                                    string state = Console.ReadLine();
+                                    addNew.SearchByState(state);
+                                    break;
+                                case 3:
+                                    f = false;
+                                    break;
+                            }
+
+                        }
+
                         break;
                     case 5:
-                        bool f = true;
-                        while(f)
+                        bool f2 = true;
+                        while (f2)
                         {
                             Console.WriteLine("Select an Option \n 1.Data using City \n 2.Data using State \n 3.Exit");
                             int opt = Convert.ToInt32(Console.ReadLine());
-                            switch(opt)
+                            switch (opt)
                             {
                                 case 1:
                                     addNew.DisplayCity();
@@ -58,17 +85,15 @@ namespace AddressBook
                                     addNew.DisplayState();
                                     break;
                                 case 3:
-                                    f= false;
+                                    f2 = false;
                                     break;
                             }
 
                         }
-                       
-
                         break;
                     case 6:
-                        bool f2 = true;
-                        while (f2)
+                        bool f3 = true;
+                        while (f3)
                         {
                             Console.WriteLine("Select an Option \n 1.Get no of Contact by city \n 2..Get no of Contact by city \n 3.Exit");
                             int opt = Convert.ToInt32(Console.ReadLine());
@@ -85,13 +110,15 @@ namespace AddressBook
                                     addNew.ByState(stateName);
                                     break;
                                 case 3:
-                                    f2 = false;
+                                    f3 = false;
                                     break;
                             }
 
                         }
                         break;
                     case 7:
+                        flag = false;
+                        break;
                         flag = false;
                         break;
                 }
