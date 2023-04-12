@@ -10,14 +10,15 @@ namespace AddressBook
     {
         Contact contact = new Contact();
         List<Contact> Data = new List<Contact>();
-        Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>(); 
+        Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+        int f;
         public void Add()
         {
+             
+              Contact contact = new Contact();
                 Console.WriteLine("Enter First Name");
                 contact.FirstName = Console.ReadLine();
-              int f =  CheckUnique(contact.FirstName);
-            if(f == 0)
-            {
+                int f = CheckUnique(contact.FirstName);
                 Console.WriteLine("Enter Last Name");
                 contact.LastName = Console.ReadLine();
                 Console.WriteLine("Enter Address");
@@ -32,10 +33,14 @@ namespace AddressBook
                 contact.PhoneNumber = Console.ReadLine();
                 Console.WriteLine("Enter email");
                 contact.Email = Console.ReadLine();
+            if(f==0)
+            {
                 Data.Add(contact);
-                dict.Add(contact.FirstName, Data);
+                var result1 = Data.Where(x => x.FirstName.Equals(contact.FirstName)).ToList();
+                dict.Add(contact.FirstName, result1);
             }
-          
+              
+
         }
         public int CheckUnique(string name)
         {
@@ -61,7 +66,19 @@ namespace AddressBook
             }
             return flag;
         }
+        public void DisplayData()
+        {
+            foreach (var data in dict)
+            {
+                Console.WriteLine("Key------------>" + data.Key);
+                foreach (var item in data.Value)
+                {
+                    Console.WriteLine("First Name :" + item.FirstName + "\n" + "Last Name :" + item.LastName + "\n" + "Address :" + item.Address + "\n" + "City :" + item.City + "\n" + "State :" + item.State + "\n" + "Zip Code :" + item.zip + "\n" + "Phone Number :" + item.PhoneNumber + "\n" + "Mail Id :" + item.Email);
+                }
 
+
+            }
+        }
         public void Display()
         {
             foreach (var data in Data)
@@ -73,7 +90,9 @@ namespace AddressBook
         {
             Console.WriteLine("Edit Using First Name");
             string name = Console.ReadLine();
-            foreach (var data in Data)
+            foreach (var item in dict)
+
+                foreach (var data in item.Value)
             {
                 if (data.FirstName == name)
                 {
@@ -84,13 +103,13 @@ namespace AddressBook
                         case 1:
                             Console.WriteLine("Enter First Name");
                             contact.FirstName = Console.ReadLine();
-                            Display();
+                            DisplayData();
                             break;
                         case 2:
                             Console.WriteLine("Enter last Name");
                             contact.LastName = Console.ReadLine();
-                            Display();
-                            break;
+                             DisplayData();
+                                break;
                         case 3:
                             Console.WriteLine("Enter Address");
                             contact.Address = Console.ReadLine();
@@ -99,27 +118,27 @@ namespace AddressBook
                         case 4:
                             Console.WriteLine("Enter City");
                             contact.City = Console.ReadLine();
-                            Display();
+                            DisplayData();
                             break;
                         case 5:
                             Console.WriteLine("Enter State");
                             contact.State = Console.ReadLine();
-                            Display();
+                            DisplayData();
                             break;
                         case 6:
                             Console.WriteLine("Enter Zip Code");
                             contact.zip = Console.ReadLine();
-                            Display();
+                            DisplayData();
                             break;
                         case 7:
                             Console.WriteLine("Enter Phone Number");
                             contact.PhoneNumber = Console.ReadLine();
-                            Display();
+                            DisplayData();
                             break;
                         case 8:
                             Console.WriteLine("Enter Mail Id");
                             contact.Email = Console.ReadLine();
-                            Display();
+                            DisplayData();
                             break;
 
 
