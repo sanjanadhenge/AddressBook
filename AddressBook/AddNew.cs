@@ -34,7 +34,7 @@ namespace AddressBook
             contact.PhoneNumber = Console.ReadLine();
             Console.WriteLine("Enter email");
             contact.Email = Console.ReadLine();
-            if (f == 0 && flag2==0)
+            if (f == 0 || flag2==0)
             {
                 Data.Add(contact);
                 var result1 = Data.Where(x => x.FirstName.Equals(contact.FirstName)).ToList();
