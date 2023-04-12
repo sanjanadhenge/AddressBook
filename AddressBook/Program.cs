@@ -27,7 +27,7 @@ namespace AddressBook
                         {
                             addNew.Add();
                         }
-                       addNew.Display();
+                       addNew.DisplayData();
                         break;
                     case 2:
                         addNew.Edit();
