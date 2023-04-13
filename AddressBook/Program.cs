@@ -16,7 +16,7 @@ namespace AddressBook
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Select Option \n1. Add Contact\n 2.Edit Contact\n 3.Delete Contact\n 4.Serach using city \n 5.Display City List Or State List \n 6.Get No of Contact by City or State n 7.Sort Dictionary using persons name \n 8.Sort Dictionary by city ,state or Zipcode \n 9.ReadFile \n 10.ReadCSV \n 11.Exit");
+                Console.WriteLine("Select Option \n1. Add Contact\n 2.Edit Contact\n 3.Delete Contact\n 4.Serach using city \n 5.Display City List Or State List \n 6.Get No of Contact by City or State n 7.Sort Dictionary using persons name \n 8.Sort Dictionary by city ,state or Zipcode \n 9.ReadFile \n 10.ReadCSV \n 11.ReadJson \n 12.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -150,6 +150,9 @@ namespace AddressBook
                         addNew.ReadCSV(@"C:\Users\SOURABH\Desktop\Day 3\AddressBook\AddressBook\Files\Data.csv");
                         break;
                     case 11:
+                        addNew.ReadJson(@"C:\Users\SOURABH\Desktop\Day 3\AddressBook\AddressBook\Files\Json.json");
+                        break;
+                    case 12:
                         flag = false;
                         break;
                       

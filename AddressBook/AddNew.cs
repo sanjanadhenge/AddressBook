@@ -1,10 +1,12 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AddressBook
@@ -54,8 +56,24 @@ namespace AddressBook
             dict.Add(key, Data);
             WriteToFile(@"C:\Users\SOURABH\Desktop\Day 3\AddressBook\AddressBook\AddressBookFile.txt");
             WriteFileCSV(@"C:\Users\SOURABH\Desktop\Day 3\AddressBook\AddressBook\Files\Data.csv");
+            WriteToJson(@"C:\Users\SOURABH\Desktop\Day 3\AddressBook\AddressBook\Files\Json.json");
         }
-
+        public void WriteToJson(string filePath)
+        {
+            var json = JsonConvert.SerializeObject(dict);
+            File.WriteAllText(filePath, json);
+        }
+        public void ReadJson(string filePath)
+        {
+            Dictionary<string, List<Contact>> records = JsonConvert.DeserializeObject<Dictionary<string, List<Contact>>>(File.ReadAllText(filePath));
+            foreach(var data in records)
+            {
+                foreach(var item in data.Value)
+                {
+                    Console.WriteLine("First Name :" + item.FirstName + "\n" + "Last Name :" + item.LastName + "\n" + "Address :" + item.Address + "\n" + "City :" + item.City + "\n" + "State :" + item.State + "\n" + "Zip Code :" + item.zip + "\n" + "Phone Number :" + item.PhoneNumber + "\n" + "Mail Id :" + item.Email);
+                }
+            }
+        }
         public void AddToDict()
         {
 
